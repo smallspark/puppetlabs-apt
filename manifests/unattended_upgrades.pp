@@ -76,4 +76,14 @@ class apt::unattended_upgrades (
     content => template('apt/_header.erb', 'apt/10periodic.erb'),
     require => Package['unattended-upgrades'],
   }
+
+  file { '/etc/apt/apt.conf.d/20auto-upgrades':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('apt/_header.erb', 'apt/20auto-upgrades.erb'),
+    require => Package['unattended-upgrades'],
+  }
+
 }
